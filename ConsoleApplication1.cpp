@@ -1,12 +1,7 @@
 #include <iostream>
-#include <string>
-using namespace std;
-class User {
-protected: int id; string name;
-public: User(int i, string n) : id(i), name(n) {} virtual ~User() {} virtual void displayRole() const = 0;
+class IPayment { public: virtual void processPayment(double amount) = 0; virtual ~IPayment() {} };
+class MomoPayment : public IPayment {
+public: void processPayment(double amount) override { std::cout << "Thanh toan Momo\n"; }
 };
-class Product {
-protected: int id; string name; double price;
-public: Product(int i, string n, double p) : id(i), name(n), price(p) {} virtual ~Product() {}
-};
-int main() { cout << "Khoi tao he thong class co ban!\n"; return 0; }
+class OrderItem { void* product; int qty; };
+int main() { std::cout << "Them IPayment va OrderItem (Raw pointer)\n"; return 0; }
